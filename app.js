@@ -1,4 +1,5 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
+import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
 import {data} from './data.js'
 
 const greetingTemplate = (name, counter) => html`
@@ -9,11 +10,13 @@ const timerTemplate = (time) => html`${time.hours}:${time.minutes}:${time.second
 
 const templateArticle = (article) =>
     html`
-        <article>
+        <article class="${classMap({
+            highlight: article.highlighted
+        })}">
             <h1>${article.title}</h1>
             ${article.highlighted ? html`<h3>Article of the day</h3>` : null}
             <div class="content">
-                <button @click='${()=>alert('Clicked')}'>Click me</button>
+                <button @click='${() => alert('Clicked')}'>Click me</button>
                 <p>${article.content}
                 </p>
             </div>
