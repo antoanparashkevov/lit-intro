@@ -2,11 +2,16 @@ import {html, render} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
 import {data} from './data.js'
 
+const main = document.querySelector('main')
+
+
 const greetingTemplate = (name, counter) => html`
     <h2>Hello there, ${name}. Clicked ${counter}</h2>
     <input type="text" ?disabled="${false}" .value="${'test'}">
 `
+
 const timerTemplate = (time) => html`${time.hours}:${time.minutes}:${time.seconds}`
+
 
 const templateArticle = (article) =>
     html`
@@ -23,19 +28,27 @@ const templateArticle = (article) =>
             ${footerTemplate(article.content)}
         </article>
     `
+
 const footerTemplate = (author) => html`
     <footer>Author: ${author}</footer>
 `
 
+
 start()
+
+window.data = data
+window.update = update;
 
 function start() {
     document.getElementById('reloadBtn').addEventListener('click', onClick)
-    const main = document.querySelector('main')
 
-
-    render(data.map(templateArticle), main)//render works as replaceChild(), not as appendChild()
+    update()
     setInterval(updateTimer, 1000);
+}
+
+function update() {
+    render(data.map(templateArticle), main)//render works as replaceChild(), not as appendChild()
+
 }
 
 function updateTimer() {
