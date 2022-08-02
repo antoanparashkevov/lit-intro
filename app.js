@@ -87,4 +87,5 @@ event.preventDefault()
     data.push(article)
 
     event.target.reset()//reset all input values from our form
+    update()
 }
