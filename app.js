@@ -15,10 +15,12 @@ const templateArticle = (article) =>
                 <p>${article.content}
                 </p>
             </div>
-            <footer>Author: ${article.author}</footer>
+            ${footerTemplate(article.content)}
         </article>
     `
-
+const footerTemplate = (author) => html`
+    <footer>Author: ${author}</footer>
+`
 
 start()
 
