@@ -3,7 +3,7 @@ import {data} from './data.js'
 
 const greetingTemplate = (name, counter) => html`
     <h2>Hello there, ${name}. Clicked ${counter}</h2>
-    <input type="text" ?disabled="${false}">
+    <input type="text" ?disabled="${false}" .value="${'test'}">
 `
 const timerTemplate = (time) => html`${time.hours}:${time.minutes}:${time.seconds}`
 
