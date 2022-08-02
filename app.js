@@ -12,6 +12,7 @@ const templateArticle = (article) =>
         <article>
             <h1>${article.title}</h1>
             <div class="content">
+                <button @click='${()=>alert('Clicked')}'>Click me</button>
                 <p>${article.content}
                 </p>
             </div>
