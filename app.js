@@ -11,6 +11,7 @@ const templateArticle = (article) =>
     html`
         <article>
             <h1>${article.title}</h1>
+            ${article.highlighted ? html`<h3>Article of the day</h3>` : null}
             <div class="content">
                 <button @click='${()=>alert('Clicked')}'>Click me</button>
                 <p>${article.content}

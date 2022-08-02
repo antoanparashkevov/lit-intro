@@ -7,7 +7,8 @@ export const data = [
   {
     "title": "Second Article",
     "content": "Simple second content",
-    "author": "Mary Malone"
+    "author": "Mary Malone",
+    "highlighted":true
   },
   {
     "title": "Third Article",
