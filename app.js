@@ -1,7 +1,8 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
 import {data} from './data.js'
 
-const template = (name,counter) => html`<h2>Hello there, ${name}. Clicked ${counter}</h2>`
+const greetingTemplate = (name, counter) => html`<h2>Hello there, ${name}. Clicked ${counter}</h2>`
+const timerTemplate = (time) => html`${time.hours}:${time.minutes}:${time.seconds}`
 
 const templateArticle = (article) =>
     html`
@@ -24,13 +25,25 @@ function start() {
 
 
     render(data.map(templateArticle), main)//render works as replaceChild(), not as appendChild()
+    setInterval(updateTimer, 1000);
 }
+
+function updateTimer() {
+    let now = new Date();
+
+    const time = {
+        hours: now.getHours(),
+        minutes: ('0' + now.getMinutes()).slice(-2),
+        seconds: ('0' + now.getSeconds()).slice(-2)
+    }
+
+    render(timerTemplate(time), document.getElementById('timer'))
+}
+
 let counter = 0;
-function onClick(){
+
+function onClick() {
     const header = document.querySelector('header')
-    const templateResult = template('Peter',++counter)
+    const templateResult = greetingTemplate('Peter', ++counter)
     render(templateResult, header)
-
-
-
 }
