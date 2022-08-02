@@ -1,6 +1,7 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
 import {classMap} from 'https://unpkg.com/lit-html/directives/class-map?module';
 import {data} from './data.js'
+import {formTemplate} from "./views/form.js";
 
 const main = document.querySelector('main')
 
@@ -42,11 +43,13 @@ window.update = update;
 function start() {
     document.getElementById('reloadBtn').addEventListener('click', onClick)
 
+
     update()
     setInterval(updateTimer, 1000);
 }
 
 function update() {
+    render(formTemplate(onSubmit),document.getElementById('forms'))
     render(data.map(templateArticle), main)//render works as replaceChild(), not as appendChild()
 
 }
@@ -69,4 +72,19 @@ function onClick() {
     const header = document.querySelector('header')
     const templateResult = greetingTemplate('Peter', ++counter)
     render(templateResult, header)
+}
+
+function onSubmit(event){
+event.preventDefault()
+    const formData = new FormData(event.target)//take whole form tag
+
+    const article = {
+        title: formData.get('title'),
+        content: formData.get('content'),
+        author: formData.get('author')
+    }
+
+    data.push(article)
+
+    event.target.reset()//reset all input values from our form
 }
