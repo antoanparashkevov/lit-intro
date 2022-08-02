@@ -1,7 +1,10 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
 import {data} from './data.js'
 
-const greetingTemplate = (name, counter) => html`<h2>Hello there, ${name}. Clicked ${counter}</h2>`
+const greetingTemplate = (name, counter) => html`
+    <h2>Hello there, ${name}. Clicked ${counter}</h2>
+    <input type="text" ?disabled="${false}">
+`
 const timerTemplate = (time) => html`${time.hours}:${time.minutes}:${time.seconds}`
 
 const templateArticle = (article) =>
